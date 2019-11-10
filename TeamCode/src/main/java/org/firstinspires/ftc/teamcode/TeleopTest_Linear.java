@@ -51,6 +51,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class TeleopTest_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
+    //testing
     HardwareTestbot robot = new HardwareTestbot();   // Use  Testbot's hardware
     double clawOffset = 0;                       // Servo mid position
     final double CLAW_SPEED = 0.02;                   // sets rate to move servo
