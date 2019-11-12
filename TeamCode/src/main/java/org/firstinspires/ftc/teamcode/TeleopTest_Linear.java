@@ -51,7 +51,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class TeleopTest_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
-    //testing
     HardwareTestbot robot = new HardwareTestbot();   // Use  Testbot's hardware
     double clawOffset = 0;                       // Servo mid position
     final double CLAW_SPEED = 0.02;                   // sets rate to move servo
@@ -142,8 +141,18 @@ public class TeleopTest_Linear extends LinearOpMode {
             }
             // Forward Right Stick
             if (gamepad1.right_stick_y > 0) {
-                robot.frontRight.setPower(0.5);
-                robot.backRight.setPower(0.5);
+                robot.frontRight.setPower(-0.5);
+                robot.backRight.setPower(-0.5);
+            }
+            //Stop
+            if (gamepad1.left_stick_y == 0) {
+                robot.frontLeft.setPower(0);
+                robot.backLeft.setPower(0);
+            }
+            //Stop also
+            if (gamepad1.right_stick_y == 0) {
+                robot.frontRight.setPower(0);
+                robot.backRight.setPower(0);
             }
             //  Backward Left Stick
             if (gamepad1.left_stick_y < 0) {
@@ -151,9 +160,9 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backLeft.setPower(-0.5);
             }
             // Backward Right Stick
-            if (gamepad1.right_stick_y > 0) {
-                robot.frontRight.setPower(-0.5);
-                robot.backRight.setPower(-0.5);
+            if (gamepad1.right_stick_y < 0) {
+                robot.frontRight.setPower(0.5);
+                robot.backRight.setPower(0.5);
             }
             // Left Strafe
             if (gamepad1.left_trigger > 0) {
@@ -163,7 +172,7 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(0.5);
             }
             // Right Strafe
-            if (gamepad1.left_trigger > 0) {
+            if (gamepad1.right_trigger > 0) {
                 robot.frontLeft.setPower(-0.5);
                 robot.backLeft.setPower(0.5);
                 robot.frontRight.setPower(0.5);
