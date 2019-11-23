@@ -84,24 +84,28 @@ public class Autonomous_Program extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
-        // Step 1:  Drive forward for 3 seconds
+        // Step 1:  Drive forward for 1.5 seconds
         robot.frontRight.setPower(FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        /*
-        // Step 3: Stref until a pictured block is found.
-        while (opModeIsActive() && )
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
 
+        //Step 3: Stref until a pictured block is found.
+            robot.frontRight.setPower(FORWARD_SPEED);
+            robot.backRight.setPower(-FORWARD_SPEED);
+            robot.frontLeft.setPower(FORWARD_SPEED);
+            robot.backLeft.setPower(-FORWARD_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 1)) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+        }
+        /*
        //  Step 2:  Spin right for 1.3 seconds
         robot.frontRight.setPower(-FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);

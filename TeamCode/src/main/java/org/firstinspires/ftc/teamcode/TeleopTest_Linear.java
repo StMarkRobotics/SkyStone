@@ -166,17 +166,17 @@ public class TeleopTest_Linear extends LinearOpMode {
             }
             // Left Strafe
             if (gamepad1.left_trigger > 0) {
-                robot.frontLeft.setPower(0.5);
-                robot.backLeft.setPower(-0.5);
-                robot.frontRight.setPower(-0.5);
-                robot.backRight.setPower(0.5);
+                robot.frontLeft.setPower(1.0);
+                robot.backLeft.setPower(-1.0);
+                robot.frontRight.setPower(1.0);
+                robot.backRight.setPower(-1.0);
             }
             // Right Strafe
             if (gamepad1.right_trigger > 0) {
-                robot.frontLeft.setPower(-0.5);
-                robot.backLeft.setPower(0.5);
-                robot.frontRight.setPower(0.5);
-                robot.backRight.setPower(-0.5);
+                robot.frontLeft.setPower(-1.0);
+                robot.backLeft.setPower(1.0);
+                robot.frontRight.setPower(-1.0);
+                robot.backRight.setPower(1.0);
             }
 
 
