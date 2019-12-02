@@ -171,6 +171,10 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.frontRight.setPower(1.0);
                 robot.backRight.setPower(-1.0);
             }
+            while (opModeIsActive() && (gamepad1.left_trigger < 3.0)) {
+                telemetry.addData("Hail the the half sentient celery makers, lord of the Javes!", "Step 1: %2.5f S Elapsed");
+                telemetry.update();
+            }
             // Right Strafe
             if (gamepad1.right_trigger > 0) {
                 robot.frontLeft.setPower(-1.0);
