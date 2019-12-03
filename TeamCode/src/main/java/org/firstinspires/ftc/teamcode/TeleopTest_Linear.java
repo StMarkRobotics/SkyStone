@@ -75,6 +75,14 @@ public class TeleopTest_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        // left = robot.frontLeft.setPower (0.5) {
+        //     robot.backLeft.setPower(0.5)
+        left=0.5;
+        left = robot.frontRight.setPower(left) {
+        }
+
+
+
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
@@ -83,6 +91,8 @@ public class TeleopTest_Linear extends LinearOpMode {
             // This way it's also easy to just drive straight, or just turn.
             drive = -gamepad1.left_stick_y;
             turn = gamepad1.right_stick_x;
+
+
 
             // Combine drive and turn for blended motion.
             left = drive + turn;
@@ -136,8 +146,9 @@ public class TeleopTest_Linear extends LinearOpMode {
 
             // Forward Left Stick
             if (gamepad1.left_stick_y > 0) {
-                robot.frontLeft.setPower(0.5);
-                robot.backLeft.setPower(0.5);
+                left=0.5;
+                robot.frontLeft.setPower(left);
+                robot.backLeft.setPower(left);
             }
             // Forward Right Stick
             if (gamepad1.right_stick_y > 0) {
@@ -171,21 +182,31 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.frontRight.setPower(1.0);
                 robot.backRight.setPower(-1.0);
             }
-            while (opModeIsActive() && (gamepad1.left_trigger < 3.0)) {
-                telemetry.addData("Hail the the half sentient celery makers, lord of the Javes!", "Step 1: %2.5f S Elapsed");
-                telemetry.update();
+
+
             }
+            /* (gamepad1.right_trigger != 0) {
+                telemetry.addData("Telemetry for Right Strafing", "Step 1: %2.5f S Elapsed");
+                telemetry.update(); */
             // Right Strafe
             if (gamepad1.right_trigger > 0) {
-                robot.frontLeft.setPower(-1.0);
-                robot.backLeft.setPower(1.0);
-                robot.frontRight.setPower(-1.0);
-                robot.backRight.setPower(1.0);
-            }
 
+                left=1;
+                robot.frontLeft.setPower(-left);
+                robot.backLeft.setPower(left);
+                robot.frontRight.setPower(-left);
+                robot.backRight.setPower(left);
+            }
+            // NEVER DOWNLOAD ON PINK PHONE/DRIVER STATION
+
+            if (gamepad1.left_trigger != 0) {
+            telemetry.addData("Telemetry for Left Strafing", "Step 1: %2.5f S Elapsed", left);
+            telemetry.update();
 
             // Pace this loop so jaw action is reasonable speed.
            // sleep(50);
+
+                // Varible inside () define, then set power to varible
         }
     }
 }

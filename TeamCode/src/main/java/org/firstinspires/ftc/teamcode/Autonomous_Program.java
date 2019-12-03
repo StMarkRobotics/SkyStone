@@ -95,7 +95,7 @@ public class Autonomous_Program extends LinearOpMode {
             telemetry.update();
         }
 
-        //Step 3: Stref until a pictured block is found.
+        //Step 3: Strafe until a pictured block is found.
             robot.frontRight.setPower(FORWARD_SPEED);
             robot.backRight.setPower(-FORWARD_SPEED);
             robot.frontLeft.setPower(FORWARD_SPEED);
