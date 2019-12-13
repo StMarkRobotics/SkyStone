@@ -52,16 +52,18 @@ public class TeleopTest_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use  Testbot's hardware
-    double clawOffset = 0;                       // Servo mid position
-    final double CLAW_SPEED = 0.02;                   // sets rate to move servo
+    /* double clawOffset = 0;                       // Servo mid position
+    final double CLAW_SPEED = 0.02;   */                // sets rate to move servo
 
     @Override
     public void runOpMode() {
+        /* double drive;
+        double turn;
+        double max; */
+        double stop;
         double left;
         double right;
-        double drive;
-        double turn;
-        double max;
+
 
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
@@ -77,10 +79,9 @@ public class TeleopTest_Linear extends LinearOpMode {
 
         // left = robot.frontLeft.setPower (0.5) {
         //     robot.backLeft.setPower(0.5)
-        left=0.5;
-       // left = robot.frontRight.setPower(left) {
-       // }
-
+        left = 0.5;
+        right = 0.5;
+        stop = 0;
 
 
         // run until the end of the match (driver presses STOP)
@@ -89,9 +90,8 @@ public class TeleopTest_Linear extends LinearOpMode {
             // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
             // This way it's also easy to just drive straight, or just turn.
-            drive = -gamepad1.left_stick_y;
+            /*drive = -gamepad1.left_stick_y;
             turn = gamepad1.right_stick_x;
-
 
 
             // Combine drive and turn for blended motion.
@@ -103,7 +103,7 @@ public class TeleopTest_Linear extends LinearOpMode {
             if (max > 1.0) {
                 left /= max;
                 right /= max;
-            }
+            } */
 
 
             // Output the safe vales to the motor drives.
@@ -114,11 +114,11 @@ public class TeleopTest_Linear extends LinearOpMode {
             // robot.leftDrive.setPower(left);
             // robot.rightDrive.setPower(right);
 
-            // Use gamepad left & right Bumpers to open and close the claw
+            /* Use gamepad left & right Bumpers to open and close the claw
             if (gamepad1.right_bumper)
                 clawOffset += CLAW_SPEED;
             else if (gamepad1.left_bumper)
-                clawOffset -= CLAW_SPEED;
+                clawOffset -= CLAW_SPEED; */
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
             /*
@@ -138,75 +138,78 @@ public class TeleopTest_Linear extends LinearOpMode {
              */
 
             // Send telemetry message to signify robot running;
-            telemetry.addData("drive", "Offset = %.2f", drive);
             telemetry.addData("left", "%.2f", left);
             telemetry.addData("right", "%.2f", right);
+            telemetry.addData("left strafing", "%2.5f", left);
+            telemetry.addData("right Strafing", "%2.5f", right);
             telemetry.update();
 
 
             // Forward Left Stick
-            if (gamepad1.left_stick_y > 0) {
-                left=0.5;
+            if (gamepad1.left_stick_y > stop) {
+                left = 0.5;
                 robot.frontLeft.setPower(left);
                 robot.backLeft.setPower(left);
             }
             // Forward Right Stick
-            if (gamepad1.right_stick_y > 0) {
-                robot.frontRight.setPower(-0.5);
-                robot.backRight.setPower(-0.5);
+            if (gamepad1.right_stick_y > stop) {
+                right = 0.5;
+                robot.frontRight.setPower(-right);
+                robot.backRight.setPower(-right);
             }
             //Stop
-            if (gamepad1.left_stick_y == 0) {
-                robot.frontLeft.setPower(0);
-                robot.backLeft.setPower(0);
+            if (gamepad1.left_stick_y == stop && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0) {
+                stop = 0;
+                robot.frontLeft.setPower(stop);
+                robot.backLeft.setPower(stop);
+                robot.frontRight.setPower(stop);
+                robot.backRight.setPower(stop);
             }
-            //Stop also
-            if (gamepad1.right_stick_y == 0) {
-                robot.frontRight.setPower(0);
-                robot.backRight.setPower(0);
-            }
+
             //  Backward Left Stick
-            if (gamepad1.left_stick_y < 0) {
-                robot.frontLeft.setPower(-0.5);
-                robot.backLeft.setPower(-0.5);
+            if (gamepad1.left_stick_y < stop) {
+                left = 0.5;
+                robot.frontLeft.setPower(-left);
+                robot.backLeft.setPower(-left);
             }
             // Backward Right Stick
-            if (gamepad1.right_stick_y < 0) {
-                robot.frontRight.setPower(0.5);
-                robot.backRight.setPower(0.5);
+            if (gamepad1.right_stick_y < stop) {
+                right = 0.5;
+                robot.frontRight.setPower(right);
+                robot.backRight.setPower(right);
             }
             // Left Strafe
             if (gamepad1.left_trigger > 0) {
-                robot.frontLeft.setPower(1.0);
-                robot.backLeft.setPower(-1.0);
-                robot.frontRight.setPower(1.0);
-                robot.backRight.setPower(-1.0);
+                left = 0.5;
+                robot.frontLeft.setPower(left);
+                robot.backLeft.setPower(-left);
+                robot.frontRight.setPower(left);
+                robot.backRight.setPower(-left);
             }
 
 
-            }
-            /* (gamepad1.right_trigger != 0) {
-                telemetry.addData("Telemetry for Right Strafing", "Step 1: %2.5f S Elapsed");
-                telemetry.update(); */
             // Right Strafe
             if (gamepad1.right_trigger > 0) {
-
-                left=1;
-                robot.frontLeft.setPower(-left);
-                robot.backLeft.setPower(left);
-                robot.frontRight.setPower(-left);
-                robot.backRight.setPower(left);
+                right = 0.5;
+                robot.frontLeft.setPower(-right);
+                robot.backLeft.setPower(right);
+                robot.frontRight.setPower(-right);
+                robot.backRight.setPower(right);
             }
+        }
+
+
+
+
+
+
             // NEVER DOWNLOAD ON PINK PHONE/DRIVER STATION
 
-            if (gamepad1.left_trigger != 0) {
-            telemetry.addData("Telemetry for Left Strafing", "Step 1: %2.5f S Elapsed", left);
-            telemetry.update();
 
             // Pace this loop so jaw action is reasonable speed.
-           // sleep(50);
+            // sleep(50);
 
-                // Varible inside () define, then set power to varible
+            // Varible inside () define, then set power to varible
         }
     }
-}
+
