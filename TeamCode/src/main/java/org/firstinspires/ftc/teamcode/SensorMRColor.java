@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -72,18 +72,21 @@ public class SensorMRColor extends LinearOpMode {
     int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
     final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
 
-    // bLedOn represents the state of the LED.
-    boolean bLedOn = true;
-
     // bPrevState and bCurrState represent the previous and current state of the button.
     boolean bPrevState = false;
     boolean bCurrState = false;
+
+    // bLedOn represents the state of the LED.
+    boolean bLedOn = true;
 
     // get a reference to our ColorSensor object.
     colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
 
     // Set the LED in the beginning
     colorSensor.enableLed(bLedOn);
+
+    // wait for the start button to be pressed.
+    waitForStart();
 
     // while the op mode is active, loop and read the RGB data.
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
