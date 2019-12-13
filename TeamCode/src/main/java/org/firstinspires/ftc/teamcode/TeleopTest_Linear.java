@@ -78,8 +78,8 @@ public class TeleopTest_Linear extends LinearOpMode {
         // left = robot.frontLeft.setPower (0.5) {
         //     robot.backLeft.setPower(0.5)
         left=0.5;
-        left = robot.frontRight.setPower(left) {
-        }
+       // left = robot.frontRight.setPower(left) {
+       // }
 
 
 
