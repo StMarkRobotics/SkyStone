@@ -32,6 +32,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+
 
 /**
  * This file illustrates the concept of driving a path based on time.
@@ -57,7 +59,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name="Pushbot: Auto Drive By Time", group="Pushbot")
 //@Disabled
 public class Autonomous_Program extends LinearOpMode {
-
+    OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot   = new HardwareTestbot();   // Use a Pushbot's hardware
     private ElapsedTime runtime = new ElapsedTime();
@@ -68,6 +70,8 @@ public class Autonomous_Program extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        // get a reference to our Light Sensor object.
+        distanceSensor = hardwareMap.get(OpticalDistanceSensor.class, "distanceSensor");
 
         /*
          * Initialize the drive system variables.
@@ -81,6 +85,10 @@ public class Autonomous_Program extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+            // send the info back to driver station using telemetry function.
+            telemetry.addData("Raw",    distanceSensor.getRawLightDetected());
+            telemetry.addData("Normal", distanceSensor.getLightDetected());
+            telemetry.update();
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
@@ -90,8 +98,11 @@ public class Autonomous_Program extends LinearOpMode {
         robot.frontLeft.setPower(-FORWARD_SPEED);
         robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+        //while (opModeIsActive() && (distanceSensor.getLightDetected()>0) && (distanceSensor.getLightDetected()<20)) {
+        while (opModeIsActive() && (runtime.seconds() < 10)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.addData("Raw",    distanceSensor.getRawLightDetected());
+            telemetry.addData("Normal", distanceSensor.getLightDetected());
             telemetry.update();
         }
 
