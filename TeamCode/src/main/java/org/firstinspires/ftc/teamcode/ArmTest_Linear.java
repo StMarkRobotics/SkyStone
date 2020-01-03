@@ -142,7 +142,7 @@ public class ArmTest_Linear extends LinearOpMode {
              */
 
             arm_pos = robot.arm.getCurrentPosition();
-            claw_pos = robot.claw
+           // claw_pos = robot.claw
 
             // Send telemetry message to signify robot running;
             telemetry.addData("left", "%.2f", left);
