@@ -111,7 +111,7 @@ public class HardwareTestbot {
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        horizonArm.setMode(CRServo.RunMode.RUN_USING_ENCODER);
+        // horizonArm.setMode(CRServo.RunMode.RUN_USING_ENCODER);
         // leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
