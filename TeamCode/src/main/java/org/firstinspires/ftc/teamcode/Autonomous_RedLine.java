@@ -58,7 +58,7 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
 @Autonomous(name="RedBox", group="Pushbot")
 //@Disabled
-public class Autonomous_RedBox extends LinearOpMode {
+public class Autonomous_RedLine extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -87,10 +87,10 @@ public class Autonomous_RedBox extends LinearOpMode {
         waitForStart();
 
         // Step 1: Strafe a little so that you aren't touching the wall.
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
-        robot.frontLeft.setPower(FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(FORWARD_SPEED);
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && runtime.seconds() < 1) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
@@ -110,10 +110,10 @@ public class Autonomous_RedBox extends LinearOpMode {
 
 
         // Step 3:  Drive forward for x seconds.
-        robot.frontRight.setPower(FORWARD_SPEED);
+        robot.frontRight.setPower(-FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && runtime.seconds() < 5) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
