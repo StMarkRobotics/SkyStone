@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -102,7 +103,7 @@ public class HardwareTestbot {
         backLeft.setPower(0);
         upArm.setPower (0);
         horizonArm.setPower (0);
-        // leftArm.setPower(0);
+
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -111,8 +112,12 @@ public class HardwareTestbot {
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        horizonArm.setMode(CRServo.RunMode.RUN_USING_ENCODER);
-        // leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        //Set Encoder to zero
+        upArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
     }
 
 }
