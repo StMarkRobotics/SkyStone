@@ -84,7 +84,7 @@ public class HardwareTestbot {
         frontLeft = hwMap.get(DcMotor.class, "frontLeft");
         backRight = hwMap.get(DcMotor.class, "backRight");
         backLeft = hwMap.get(DcMotor.class, "backLeft");
-        upArm = hwMap.get(DcMotor.class, "upArm");
+        //upArm = hwMap.get(DcMotor.class, "upArm");
         horizonArm = hwMap.get(CRServo.class, "horizonArm");
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
@@ -92,7 +92,7 @@ public class HardwareTestbot {
         frontLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        upArm.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
+       // upArm.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         horizonArm.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
 
         // Set all motors to zero power
@@ -100,7 +100,7 @@ public class HardwareTestbot {
         frontLeft.setPower(0);
         backRight.setPower(0);
         backLeft.setPower(0);
-        upArm.setPower (0);
+       // upArm.setPower (0);
         horizonArm.setPower (0);
         // leftArm.setPower(0);
 
@@ -110,7 +110,7 @@ public class HardwareTestbot {
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        // upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // horizonArm.setMode(CRServo.RunMode.RUN_USING_ENCODER);
         // leftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
