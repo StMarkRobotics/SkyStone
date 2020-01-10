@@ -65,6 +65,7 @@ public class TeleopTest_Linear extends LinearOpMode {
         double right;
         double up;
         double encoder;
+        double side;
 
 
         /* Initialize the hardware variables.
@@ -85,6 +86,7 @@ public class TeleopTest_Linear extends LinearOpMode {
         stop = 0;
         up = 0.5;
         encoder = 0;
+        side = 0.5;
 
 
         // run until the end of the match (driver presses STOP)
@@ -97,6 +99,7 @@ public class TeleopTest_Linear extends LinearOpMode {
             telemetry.addData("left strafing", "%2.5f", left);
             telemetry.addData("right Strafing", "%2.5f", right);
             telemetry.addData("encoder", "%.2f", encoder);
+            telemetry.addData("side", "%.2f", side);
             telemetry.update();
 
             encoder = robot.upArm.getCurrentPosition();
@@ -115,13 +118,13 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(-right);
             }
             //Stop
-            if (gamepad1.left_stick_y == stop && gamepad1.right_stick_y == stop && gamepad1.left_trigger == stop && gamepad1.right_trigger == stop && gamepad2.left_stick_y == stop) {
+            if (gamepad1.left_stick_y == stop && gamepad1.right_stick_y == stop && gamepad1.left_trigger == stop && gamepad1.right_trigger == stop) {
                 stop = 0;
                 robot.frontLeft.setPower(stop);
                 robot.backLeft.setPower(stop);
                 robot.frontRight.setPower(stop);
                 robot.backRight.setPower(stop);
-                robot.upArm.setPower(stop);
+
             }
 
             //  Backward Left Stick
@@ -156,13 +159,15 @@ public class TeleopTest_Linear extends LinearOpMode {
             }
 
             // Arm Up
-            if (gamepad2.left_stick_y > 0 && encoder < -9800) {
+            if (gamepad2.left_stick_y > 0 /*&& encoder > -10500 */) {
                 up = 0.7;
-                robot.upArm.setPower(up);
-            } else if (gamepad2.left_stick_y < 0 && encoder > 0) {
+                robot.upArm.setPower(up); }
+
+            else if (gamepad2.left_stick_y < 0 /*&& encoder > 0 */)  {
                 up = -0.7;
                 robot.upArm.setPower(up);
-            } else {
+            }
+            else {
                 up = 0;
                 robot.upArm.setPower(up);
             }
@@ -170,14 +175,14 @@ public class TeleopTest_Linear extends LinearOpMode {
 
             // Arm Horizontal
             if (gamepad2.right_stick_y > 0) {
-                up = 0.7;
-                robot.horizonArm.setPower(up);
+                side = 0.7;
+                robot.horizonArm.setPower(side);
             } else if (gamepad2.right_stick_y < 0) {
-                up = -0.7;
-                robot.horizonArm.setPower(up);
+                side = -0.7;
+                robot.horizonArm.setPower(side);
             } else {
-                up = 0;
-                robot.horizonArm.setPower(up);
+                side = 0;
+                robot.horizonArm.setPower(side);
             }
 
 
