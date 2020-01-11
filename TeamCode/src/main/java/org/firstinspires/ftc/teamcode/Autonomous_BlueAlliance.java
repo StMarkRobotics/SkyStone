@@ -31,8 +31,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 /**
@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Red", group="Pushbot")
+@Autonomous(name="Blue", group="Pushbot")
 //@Disabled
-public class Autonomous_RedAlliance extends LinearOpMode {
+public class Autonomous_BlueAlliance extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -87,12 +87,12 @@ public class Autonomous_RedAlliance extends LinearOpMode {
         waitForStart();
 
         //Step 1: Strafe a little so that you aren't touching the wall.
-        robot.frontRight.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(FORWARD_SPEED);
+        robot.frontRight.setPower(FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.5) {
+        while (opModeIsActive() && runtime.seconds() < 1.2) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
