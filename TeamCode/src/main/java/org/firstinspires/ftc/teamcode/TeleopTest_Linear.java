@@ -66,6 +66,7 @@ public class TeleopTest_Linear extends LinearOpMode {
         double up;
         double encoder;
         double side;
+        double leftstick;
 
 
         /* Initialize the hardware variables.
@@ -87,6 +88,7 @@ public class TeleopTest_Linear extends LinearOpMode {
         up = 0.5;
         encoder = 0;
         side = 0.5;
+        leftstick = 0;
 
 
         // run until the end of the match (driver presses STOP)
@@ -95,6 +97,7 @@ public class TeleopTest_Linear extends LinearOpMode {
 
             // Send telemetry message to signify robot running;
             telemetry.addData("left", "%.2f", left);
+            telemetry.addData("leftstick", "%.2f", leftstick);
             telemetry.addData("right", "%.2f", right);
             telemetry.addData("left strafing", "%2.5f", left);
             telemetry.addData("right Strafing", "%2.5f", right);
@@ -103,6 +106,7 @@ public class TeleopTest_Linear extends LinearOpMode {
             telemetry.update();
 
             encoder = robot.upArm.getCurrentPosition();
+            leftstick = gamepad1.left_stick_y;
 
 
             // Forward Left Stick
@@ -159,11 +163,11 @@ public class TeleopTest_Linear extends LinearOpMode {
             }
 
             // Arm Up
-            if (gamepad2.left_stick_y > 0 /*&& encoder > -10500 */) {
+            if (gamepad2.left_stick_y > 0 && encoder < 11750) {
                 up = 0.7;
                 robot.upArm.setPower(up); }
 
-            else if (gamepad2.left_stick_y < 0 /*&& encoder > 0 */)  {
+            else if (gamepad2.left_stick_y < 0 && encoder > 0 )  {
                 up = -0.7;
                 robot.upArm.setPower(up);
             }
@@ -171,6 +175,20 @@ public class TeleopTest_Linear extends LinearOpMode {
                 up = 0;
                 robot.upArm.setPower(up);
             }
+
+            /* // Arm Up
+            if (gamepad2.left_stick_y > 0 && encoder < 11750) {
+                up = 0.7;
+                robot.upArm.setPower(up); }
+
+            else if (gamepad2.left_stick_y < 0 && encoder > 0 )  {
+                up = -0.7;
+                robot.upArm.setPower(up);
+            }
+            else {
+                up = 0;
+                robot.upArm.setPower(up);
+            } */
 
 
             // Arm Horizontal

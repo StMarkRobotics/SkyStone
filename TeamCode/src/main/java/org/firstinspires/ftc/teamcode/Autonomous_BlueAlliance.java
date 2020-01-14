@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Blue", group="Pushbot")
+@Autonomous(name="Blue Alliance", group="Pushbot")
 //@Disabled
 public class Autonomous_BlueAlliance extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
