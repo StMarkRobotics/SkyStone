@@ -93,7 +93,7 @@ public class HardwareTestbot {
         frontLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        upArm.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
+        upArm.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         horizonArm.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
 
         // Set all motors to zero power
