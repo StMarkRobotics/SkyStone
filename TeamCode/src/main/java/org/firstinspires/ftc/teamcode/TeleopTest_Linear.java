@@ -111,13 +111,13 @@ public class TeleopTest_Linear extends LinearOpMode {
 
             // Forward Left Stick
             if (gamepad1.left_stick_y > stop) {
-                left = 0.5;
+                left = gamepad1.left_stick_y;
                 robot.frontLeft.setPower(left);
                 robot.backLeft.setPower(left);
             }
             // Forward Right Stick
             if (gamepad1.right_stick_y > stop) {
-                right = 0.5;
+                right = gamepad1.right_stick_y;
                 robot.frontRight.setPower(-right);
                 robot.backRight.setPower(-right);
             }
@@ -133,15 +133,15 @@ public class TeleopTest_Linear extends LinearOpMode {
 
             //  Backward Left Stick
             if (gamepad1.left_stick_y < stop) {
-                left = 0.5;
-                robot.frontLeft.setPower(-left);
-                robot.backLeft.setPower(-left);
+                left = gamepad1.left_stick_y;
+                robot.frontLeft.setPower(left);
+                robot.backLeft.setPower(left);
             }
             // Backward Right Stick
             if (gamepad1.right_stick_y < stop) {
-                right = 0.5;
-                robot.frontRight.setPower(right);
-                robot.backRight.setPower(right);
+                right = gamepad1.right_stick_y;
+                robot.frontRight.setPower(-right);
+                robot.backRight.setPower(-right);
             }
             // Left Strafe
             if (gamepad1.left_trigger > 0) {
