@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Red Alliance", group="Pushbot")
+@Autonomous(name="Right Strafe", group="Pushbot")
 //@Disabled
-public class Autonomous_RedAlliance extends LinearOpMode {
+public class Autonomous_RightStrafe extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -119,6 +119,9 @@ public class Autonomous_RedAlliance extends LinearOpMode {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+
+
+
 
     }
 

@@ -61,7 +61,8 @@ public class HardwareTestbot {
     public DcMotor backRight = null;
     public DcMotor backLeft = null;
     public DcMotor upArm = null;
-    public CRServo horizonArm = null;
+    public CRServo rightSpinWheel = null;
+    public CRServo leftSpinWheel = null;
 
     /*public Servo    leftClaw    = null;
     public Servo    rightClaw   = null;
@@ -86,7 +87,8 @@ public class HardwareTestbot {
         backRight = hwMap.get(DcMotor.class, "backRight");
         backLeft = hwMap.get(DcMotor.class, "backLeft");
         upArm = hwMap.get(DcMotor.class, "upArm");
-        horizonArm = hwMap.get(CRServo.class, "horizonArm");
+        rightSpinWheel = hwMap.get(CRServo.class, "rightSpinWheel");
+        leftSpinWheel = hwMap.get(CRServo.class, "leftSpinWheel");
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
         frontRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -94,7 +96,8 @@ public class HardwareTestbot {
         backRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         upArm.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
-        horizonArm.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
+        rightSpinWheel.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
+        leftSpinWheel.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
 
         // Set all motors to zero power
         frontRight.setPower(0);
@@ -102,7 +105,8 @@ public class HardwareTestbot {
         backRight.setPower(0);
         backLeft.setPower(0);
         upArm.setPower (0);
-        horizonArm.setPower (0);
+        rightSpinWheel.setPower(0);
+        leftSpinWheel.setPower(0);
 
 
         // Set all motors to run without encoders.

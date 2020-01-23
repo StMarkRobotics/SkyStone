@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Blue Alliance- No Strafe", group="Pushbot")
+@Autonomous(name="No Strafe", group="Pushbot")
 //@Disabled
-public class Autonomous_BlueAllianceNoStrafe extends LinearOpMode {
+public class Autonomous_NoStrafe extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -86,33 +86,8 @@ public class Autonomous_BlueAllianceNoStrafe extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        /* Step 1: Strafe a little so that you aren't touching the wall.
 
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
-        robot.frontLeft.setPower(FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.2) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-
-
-        }
-*/
-         /* Step 2: Take a break.
-        robot.frontRight.setPower(0);
-        robot.backRight.setPower(0);
-        robot.frontLeft.setPower(0);
-        robot.backLeft.setPower(0);
-        runtime.reset();
-        while (opModeIsActive() && runtime.seconds()<0.5)  {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }*/
-
-
-        //Step 3:  Drive forward for x seconds.
+        //Drive forward for x seconds.
         robot.frontRight.setPower(FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
@@ -123,6 +98,12 @@ public class Autonomous_BlueAllianceNoStrafe extends LinearOpMode {
             telemetry.update();
         }
 
+        robot.rightSpinWheel.setPower(1);
+        runtime.reset();
+        while (opModeIsActive() && runtime.seconds() < 1.8) {
+            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
     }
 
     }

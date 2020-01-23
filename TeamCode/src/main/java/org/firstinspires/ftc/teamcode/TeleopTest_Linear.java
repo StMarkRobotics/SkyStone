@@ -194,13 +194,13 @@ public class TeleopTest_Linear extends LinearOpMode {
             // Arm Horizontal
             if (gamepad2.right_stick_y > 0) {
                 side = 0.7;
-                robot.horizonArm.setPower(side);
+                robot.rightSpinWheel.setPower(side);
             } else if (gamepad2.right_stick_y < 0) {
                 side = -0.7;
-                robot.horizonArm.setPower(side);
+                robot.rightSpinWheel.setPower(side);
             } else {
                 side = 0;
-                robot.horizonArm.setPower(side);
+                robot.rightSpinWheel.setPower(side);
             }
 
 

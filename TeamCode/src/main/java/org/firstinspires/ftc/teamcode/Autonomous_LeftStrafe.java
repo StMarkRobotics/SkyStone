@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Red Alliance- No Strafe", group="Pushbot")
+@Autonomous(name="Left Strafe", group="Pushbot")
 //@Disabled
-public class Autonomous_RedAllianceNoStrafe extends LinearOpMode {
+public class Autonomous_LeftStrafe extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -86,18 +86,16 @@ public class Autonomous_RedAllianceNoStrafe extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        /* Step 1: Strafe a little so that you aren't touching the wall.
-        robot.frontRight.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(FORWARD_SPEED);
+        //Step 1: Strafe a little so that you aren't touching the wall.
+        robot.frontRight.setPower(FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.5) {
+        while (opModeIsActive() && runtime.seconds() < 1.2) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-
-         */
 
          /*Step 2: Take a break.
         robot.frontRight.setPower(0);
