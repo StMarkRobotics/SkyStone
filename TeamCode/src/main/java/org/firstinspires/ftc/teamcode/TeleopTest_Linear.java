@@ -67,6 +67,8 @@ public class TeleopTest_Linear extends LinearOpMode {
         double encoder;
         double side;
         double leftstick;
+        double left_out;
+        double right_in;
 
 
         /* Initialize the hardware variables.
@@ -89,6 +91,8 @@ public class TeleopTest_Linear extends LinearOpMode {
         encoder = 0;
         side = 0.5;
         leftstick = 0;
+        left_out = 0.5;
+        right_in = 0.5;
 
 
         // run until the end of the match (driver presses STOP)
@@ -105,7 +109,7 @@ public class TeleopTest_Linear extends LinearOpMode {
             telemetry.addData("side", "%.2f", side);
             telemetry.update();
 
-            encoder = robot.upArm.getCurrentPosition();
+            // encoder = robot.upArm.getCurrentPosition();
             leftstick = gamepad1.left_stick_y;
 
 
@@ -122,12 +126,14 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(-right);
             }
             //Stop
-            if (gamepad1.left_stick_y == stop && gamepad1.right_stick_y == stop && gamepad1.left_trigger == stop && gamepad1.right_trigger == stop) {
+            if (gamepad1.left_stick_y == stop && gamepad1.right_stick_y == stop && gamepad1.left_trigger == stop && gamepad1.right_trigger == stop && gamepad2.right_trigger == stop && gamepad2.left_trigger == 0) {
                 stop = 0;
                 robot.frontLeft.setPower(stop);
                 robot.backLeft.setPower(stop);
                 robot.frontRight.setPower(stop);
                 robot.backRight.setPower(stop);
+                robot.rightSpinWheel.setPower(stop);
+                robot.leftSpinWheel.setPower(stop);
 
             }
 
@@ -162,18 +168,34 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(right);
             }
 
+
+            // Wheel Spin Out
+            if (gamepad2.left_trigger > 0) {
+                left_out = 1;
+                robot.leftSpinWheel.setPower(left_out);
+                robot.rightSpinWheel.setPower(-left_out);
+            }
+
+
+            // Wheel Spin In
+            if (gamepad2.right_trigger > 0) {
+                right_in = 1;
+                robot.leftSpinWheel.setPower(-right_in);
+                robot.rightSpinWheel.setPower(right_in);
+            }
+
             // Arm Up
-            if (gamepad2.left_stick_y > 0 && encoder < 11750) {
+            if (gamepad2.dpad_up /* && encoder < 11750*/) {
                 up = 0.7;
-                robot.upArm.setPower(up); }
+                robot.slide.setPower(up); }
 
             else if (gamepad2.left_stick_y < 0 && encoder > 0 )  {
                 up = -0.7;
-                robot.upArm.setPower(up);
+                robot.slide.setPower(up);
             }
             else {
                 up = 0;
-                robot.upArm.setPower(up);
+                robot.slide.setPower(up);
             }
 
             /* // Arm Up
@@ -190,7 +212,7 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.upArm.setPower(up);
             } */
 
-
+/*
             // Arm Horizontal
             if (gamepad2.right_stick_y > 0) {
                 side = 0.7;
@@ -202,7 +224,7 @@ public class TeleopTest_Linear extends LinearOpMode {
                 side = 0;
                 robot.rightSpinWheel.setPower(side);
             }
-
+*/
 
         }
 

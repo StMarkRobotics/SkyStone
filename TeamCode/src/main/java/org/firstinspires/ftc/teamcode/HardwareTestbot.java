@@ -60,7 +60,7 @@ public class HardwareTestbot {
     public DcMotor frontLeft = null;
     public DcMotor backRight = null;
     public DcMotor backLeft = null;
-    public DcMotor upArm = null;
+    public DcMotor slide = null;
     public CRServo rightSpinWheel = null;
     public CRServo leftSpinWheel = null;
 
@@ -86,16 +86,17 @@ public class HardwareTestbot {
         frontLeft = hwMap.get(DcMotor.class, "frontLeft");
         backRight = hwMap.get(DcMotor.class, "backRight");
         backLeft = hwMap.get(DcMotor.class, "backLeft");
-        upArm = hwMap.get(DcMotor.class, "upArm");
+        slide = hwMap.get(DcMotor.class, "slide");
         rightSpinWheel = hwMap.get(CRServo.class, "rightSpinWheel");
         leftSpinWheel = hwMap.get(CRServo.class, "leftSpinWheel");
+      //  slide = hwMap.get(DcMotor.class, "slide");
 
         //leftArm    = hwMap.get(DcMotor.class, "left_arm");
         frontRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backLeft.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        upArm.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
+        slide.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightSpinWheel.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         leftSpinWheel.setDirection(CRServo.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
 
@@ -104,7 +105,7 @@ public class HardwareTestbot {
         frontLeft.setPower(0);
         backRight.setPower(0);
         backLeft.setPower(0);
-        upArm.setPower (0);
+        slide.setPower (0);
         rightSpinWheel.setPower(0);
         leftSpinWheel.setPower(0);
 
@@ -115,11 +116,11 @@ public class HardwareTestbot {
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Set Encoder to zero
-        upArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        // upArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        // upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
     }
