@@ -71,6 +71,7 @@ public class TeleopTest_Linear extends LinearOpMode {
         double right_in;
 
 
+
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
@@ -106,7 +107,7 @@ public class TeleopTest_Linear extends LinearOpMode {
             telemetry.addData("left strafing", "%2.5f", left);
             telemetry.addData("right Strafing", "%2.5f", right);
             telemetry.addData("encoder", "%.2f", encoder);
-            telemetry.addData("side", "%.2f", side);
+            telemetry.addData("arm pivot", "%.2f", up);
             telemetry.update();
 
             // encoder = robot.upArm.getCurrentPosition();
@@ -183,20 +184,24 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.leftSpinWheel.setPower(-right_in);
                 robot.rightSpinWheel.setPower(right_in);
             }
-
-            // Arm Up
-            if (gamepad2.dpad_up /* && encoder < 11750*/) {
-                up = 0.7;
-                robot.slide.setPower(up); }
-
-            else if (gamepad2.left_stick_y < 0 && encoder > 0 )  {
-                up = -0.7;
+            encoder= robot.slide.getCurrentPosition();
+            // Arm Pivot
+            if (gamepad2.dpad_down && encoder < 825) {
+                up = 0.3;
                 robot.slide.setPower(up);
             }
+
+            else if (gamepad2.dpad_up && encoder > 0) {
+                up = -0.3;
+                robot.slide.setPower(up);
+
+            }
+
             else {
                 up = 0;
                 robot.slide.setPower(up);
             }
+
 
             /* // Arm Up
             if (gamepad2.left_stick_y > 0 && encoder < 11750) {
