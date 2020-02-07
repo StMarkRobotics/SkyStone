@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Blue Square", group="Pushbot")
+@Autonomous(name="Red Line", group="Pushbot")
 //@Disabled
-public class Autonomous_BlueSquare extends LinearOpMode {
+public class Autonomous_RedLine extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot   = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -107,37 +107,39 @@ public class Autonomous_BlueSquare extends LinearOpMode {
             telemetry.update();
         }
 */
-        //Strafe for x
-            robot.frontRight.setPower(FORWARD_SPEED);
-            robot.backRight.setPower(-FORWARD_SPEED);
-            robot.frontLeft.setPower(FORWARD_SPEED);
-            robot.backLeft.setPower(-FORWARD_SPEED);
+        //Strafe for a x
+            robot.frontRight.setPower(-FORWARD_SPEED);
+            robot.backRight.setPower(FORWARD_SPEED);
+            robot.frontLeft.setPower(-FORWARD_SPEED);
+            robot.backLeft.setPower(FORWARD_SPEED);
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 3)) {
+            while (opModeIsActive() && (runtime.seconds() < 3.4)) {
                 telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                 telemetry.update();
         }
-/*
 
-        // Step 3:  Drive Backwards for 1 Second
-        robot.leftDrive.setPower(-FORWARD_SPEED);
-        robot.rightDrive.setPower(-FORWARD_SPEED);
+
+        // Step 3: Turn
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
             telemetry.addData("Path", "Leg 3: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
-        // Step 4:  Stop and close the claw.
-        robot.leftDrive.setPower(0);
-        robot.rightDrive.setPower(0);
-        robot.leftClaw.setPosition(1.0);
-        robot.rightClaw.setPosition(0.0);
+        /*Step 4: Strafe
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
+        robot.frontRight.setPower(FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
         sleep(1000);
-        
-         */
+        */
+
     }
 }
