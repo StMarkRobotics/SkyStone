@@ -56,9 +56,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Time", group="Pushbot")
+@Autonomous(name="Blue Square", group="Pushbot")
 //@Disabled
-public class Autonomous_Program extends LinearOpMode {
+public class Autonomous_BlueSquare extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
     /* Declare OpMode members. */
     HardwareTestbot robot   = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -91,7 +91,7 @@ public class Autonomous_Program extends LinearOpMode {
             telemetry.update();
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
-
+/*
         // Step 1:  Drive forward for 1.5 seconds
         robot.frontRight.setPower(FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
@@ -106,28 +106,18 @@ public class Autonomous_Program extends LinearOpMode {
             telemetry.addData("Use this one: ", distanceSensor.getLightDetected());
             telemetry.update();
         }
-/*
-        //Step 3: Strafe until a pictured block is found.
+*/
+        //Strafe for x
             robot.frontRight.setPower(FORWARD_SPEED);
             robot.backRight.setPower(-FORWARD_SPEED);
             robot.frontLeft.setPower(FORWARD_SPEED);
             robot.backLeft.setPower(-FORWARD_SPEED);
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1)) {
+            while (opModeIsActive() && (runtime.seconds() < 3)) {
                 telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                 telemetry.update();
         }
-
-       //  Step 2:  Spin right for 1.3 seconds
-        robot.frontRight.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.3)) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
+/*
 
         // Step 3:  Drive Backwards for 1 Second
         robot.leftDrive.setPower(-FORWARD_SPEED);
