@@ -83,63 +83,63 @@ public class Autonomous_RedLine extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
-        // Wait for the game to start (driver presses PLAY)
+        // Wait for the game to a start (driver presses PLAY)
         waitForStart();
             // send the info back to driver station using telemetry function.
             telemetry.addData("Don't use this number: ",    distanceSensor.getRawLightDetected());
             telemetry.addData("Use this one: ", distanceSensor.getLightDetected());
             telemetry.update();
 
-        // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
-/*
-        // Step 1:  Drive forward for 1.5 seconds
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
-        runtime.reset();
-        //while (opModeIsActive() && (distanceSensor.getLightDetected()==0) || (distanceSensor.getLightDetected()>.01)) {
-        //while (opModeIsActive() && (runtime.seconds() < 10)) {
-        while (opModeIsActive() && distanceSensor.getLightDetected()==0)  {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-            telemetry.addData("Don't use this number: ",    distanceSensor.getRawLightDetected());
-            telemetry.addData("Use this one: ", distanceSensor.getLightDetected());
-            telemetry.update();
-        }
-*/
-        //Strafe for a x
+
+        //Step 1: Strafe
             robot.frontRight.setPower(-FORWARD_SPEED);
             robot.backRight.setPower(FORWARD_SPEED);
             robot.frontLeft.setPower(-FORWARD_SPEED);
             robot.backLeft.setPower(FORWARD_SPEED);
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 3.4)) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            while (opModeIsActive() && (runtime.seconds() < 3.5)) {
+                telemetry.addData("Path", "Step 1: %2.5f S Elapsed", runtime.seconds());
                 telemetry.update();
         }
 
+        //Step 2: Move backwards
+            robot.frontRight.setPower(-FORWARD_SPEED);
+            robot.backRight.setPower(-FORWARD_SPEED);
+            robot.frontLeft.setPower(FORWARD_SPEED);
+            robot.backLeft.setPower(FORWARD_SPEED);
+            while (opModeIsActive() && (runtime.seconds() < 0.3)) {
+                telemetry.addData("Path", "Step 2: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+            }
 
-        // Step 3: Turn
+
+
+        // Step 3: Turn to change the position of the do hiya to the red thingy
         robot.frontRight.setPower(-FORWARD_SPEED);
         robot.backRight.setPower(-FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
         robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
-            telemetry.addData("Path", "Leg 3: %2.5f S Elapsed", runtime.seconds());
+        while (opModeIsActive() && (runtime.seconds() < 0.6)) {
+            telemetry.addData("Path", "Step 3: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
-        /*Step 4: Strafe
+        //Step 4: Strafe
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
         robot.backLeft.setPower(FORWARD_SPEED);
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+            telemetry.addData("Path", "Step 4: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
         sleep(1000);
-        */
+
 
     }
 }
