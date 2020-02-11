@@ -86,6 +86,8 @@ public class Autonomous_RightStrafe extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        //
+
         //Step 1: Strafe a little so that you aren't touching the wall.
         robot.frontRight.setPower(-FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
@@ -97,7 +99,7 @@ public class Autonomous_RightStrafe extends LinearOpMode {
             telemetry.update();
         }
 
-         /*Step 2: Take a break.
+         //Step 2: Take a break.
         robot.frontRight.setPower(0);
         robot.backRight.setPower(0);
         robot.frontLeft.setPower(0);
@@ -106,10 +108,21 @@ public class Autonomous_RightStrafe extends LinearOpMode {
         while (opModeIsActive() && runtime.seconds()<0.5)  {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
-        }*/
+        }
+
+        //Step 3: Move arm down
+        robot.frontRight.setPower(0);
+        robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.backLeft.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && runtime.seconds()<0.5)  {
+            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
 
 
-        //Step 3:  Drive forward for x seconds.
+        //Step 4:  Drive forward for x seconds.
         robot.frontRight.setPower(FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
@@ -120,6 +133,10 @@ public class Autonomous_RightStrafe extends LinearOpMode {
             telemetry.update();
         }
 
+// robot.slide.setPower(____)
+        // + = Forward
+        // - = Backwards
+        // No Encoder runing
 
 
 

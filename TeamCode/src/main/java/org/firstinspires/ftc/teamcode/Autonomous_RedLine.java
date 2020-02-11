@@ -120,18 +120,64 @@ public class Autonomous_RedLine extends LinearOpMode {
         robot.frontLeft.setPower(-FORWARD_SPEED);
         robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.6)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.55)) {
             telemetry.addData("Path", "Step 3: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
-        //Step 4: Strafe
+        //Step 4: Strafe a bit more.
         robot.frontRight.setPower(-FORWARD_SPEED);
         robot.backRight.setPower(FORWARD_SPEED);
         robot.frontLeft.setPower(-FORWARD_SPEED);
         robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+        while (opModeIsActive() && (runtime.seconds() < 0.6)) {
+            telemetry.addData("Path", "Step 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+
+        // Step 5: Turn to change the position of the do hiya to the red thingy
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.1)) {
+            telemetry.addData("Path", "Step 3: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+
+        }
+
+
+        //Step 6: Move backwards.
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.45)) {
+            telemetry.addData("Path", "Step 4: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+        // Step 5: Turn to change the position of the do hiya to the red thingy
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.1)) {
+            telemetry.addData("Path", "Step 3: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+        //Step 6: Move backwards.
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.45)) {
             telemetry.addData("Path", "Step 4: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
