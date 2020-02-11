@@ -120,6 +120,9 @@ public class TeleopTest_Linear extends LinearOpMode {
             leftstick = gamepad1.left_stick_y;
             rightstick = gamepad1.right_stick_y;
 
+            //you could simplify the forward and back stick if statements...
+            //Do you really need 4 if statements, do you need if statements at all?
+
 
             // Forward Left Stick
             if (gamepad1.left_stick_y > stop) {
@@ -158,6 +161,10 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.frontRight.setPower(-right);
                 robot.backRight.setPower(-right);
             }
+
+            // You could make the strafe a nested if - else if - else statement
+            // Would this also allow you to get rid of the "stop" if statement?
+
             // Left Strafe
             if (gamepad1.left_trigger > 0) {
                 left = 0.5;
@@ -177,6 +184,8 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(right);
             }
 
+            // You could make the wheel spin a nested if - else if - else statement
+            // Would this also allow you to get rid of the "stop" if statement?
 
             // Wheel Spin Out
             if (gamepad2.left_trigger > 0) {
