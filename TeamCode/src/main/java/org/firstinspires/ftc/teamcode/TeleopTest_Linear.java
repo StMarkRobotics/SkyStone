@@ -124,48 +124,22 @@ public class TeleopTest_Linear extends LinearOpMode {
             //Do you really need 4 if statements, do you need if statements at all?
 
 
-            // Forward Left Stick
-            if (gamepad1.left_stick_y > stop) {
-                left = gamepad1.left_stick_y;
-                robot.frontLeft.setPower(left);
-                robot.backLeft.setPower(left);
-            }
-            // Forward Right Stick
-            if (gamepad1.right_stick_y > stop) {
-                right = gamepad1.right_stick_y;
-                robot.frontRight.setPower(-right);
-                robot.backRight.setPower(-right);
-            }
-            //Stop
-            if (gamepad1.left_stick_y == stop && gamepad1.right_stick_y == stop && gamepad1.left_trigger == stop && gamepad1.right_trigger == stop && gamepad2.right_trigger == stop && gamepad2.left_trigger == stop && !gamepad2.dpad_up  && !gamepad2.dpad_down) {
-                stop = 0;
-                robot.frontLeft.setPower(stop);
-                robot.backLeft.setPower(stop);
-                robot.frontRight.setPower(stop);
-                robot.backRight.setPower(stop);
-                robot.rightSpinWheel.setPower(stop);
-                robot.leftSpinWheel.setPower(stop);
-                robot.slide.setPower(stop);
+            // Left Side
+            if (gamepad1.right_trigger == 0 && gamepad1.left_trigger == 0){
+                robot.frontLeft.setPower(leftstick);
+                 robot.backLeft.setPower(leftstick); }
 
-            }
 
-            //  Backward Left Stick
-            if (gamepad1.left_stick_y < stop) {
-                left = gamepad1.left_stick_y;
-                robot.frontLeft.setPower(left);
-                robot.backLeft.setPower(left);
-            }
-            // Backward Right Stick
-            if (gamepad1.right_stick_y < stop) {
-                right = gamepad1.right_stick_y;
-                robot.frontRight.setPower(-right);
-                robot.backRight.setPower(-right);
-            }
+            // Right Side
+            if (gamepad1.right_trigger == 0 && gamepad1.left_trigger == 0) {
+                robot.frontRight.setPower(-rightstick);
+                robot.backRight.setPower(-rightstick); }
+
 
             // You could make the strafe a nested if - else if - else statement
             // Would this also allow you to get rid of the "stop" if statement?
 
-            // Left Strafe
+            //Strafe
             if (gamepad1.left_trigger > 0) {
                 left = 0.5;
                 robot.frontLeft.setPower(left);
@@ -174,9 +148,7 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(-left);
             }
 
-
-            // Right Strafe
-            if (gamepad1.right_trigger > 0) {
+            else if (gamepad1.right_trigger > 0) {
                 right = 0.5;
                 robot.frontLeft.setPower(-right);
                 robot.backLeft.setPower(right);
@@ -184,22 +156,32 @@ public class TeleopTest_Linear extends LinearOpMode {
                 robot.backRight.setPower(right);
             }
 
+            else if (gamepad1.right_trigger == 0 && gamepad1.left_trigger == 0 && gamepad1.left_stick_y == 0 && gamepad1.right_stick_y  == 0) {
+                robot.frontLeft.setPower(0);
+                robot.backLeft.setPower(0);
+                robot.frontRight.setPower(0);
+                robot.backRight.setPower(0);
+            }
+
             // You could make the wheel spin a nested if - else if - else statement
             // Would this also allow you to get rid of the "stop" if statement?
 
-            // Wheel Spin Out
+            // Wheel Spin
             if (gamepad2.left_trigger > 0) {
                 left_out = 1;
                 robot.leftSpinWheel.setPower(left_out);
                 robot.rightSpinWheel.setPower(-left_out);
             }
 
-
-            // Wheel Spin In
-            if (gamepad2.right_trigger > 0) {
+            else if (gamepad2.right_trigger > 0) {
                 right_in = 1;
                 robot.leftSpinWheel.setPower(-right_in);
                 robot.rightSpinWheel.setPower(right_in);
+            }
+
+            else {
+                robot.leftSpinWheel.setPower(0);
+                robot.rightSpinWheel.setPower(0);
             }
 
             // Encoder
@@ -207,7 +189,7 @@ public class TeleopTest_Linear extends LinearOpMode {
 
 
             // Arm Pivot
-            if (gamepad2.dpad_down && encoder < 900) {
+            if (gamepad2.dpad_down && encoder < 1230) {
                 up = 0.3;
                 robot.slide.setPower(up);
             }
