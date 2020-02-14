@@ -87,23 +87,26 @@ public class Autonomous_NoStrafe extends LinearOpMode {
         waitForStart();
 
 
-        //Drive forward for x seconds.
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
+        //Drive backwards for x seconds.
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.8) {
+        while (opModeIsActive() && runtime.seconds() < 1.7) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
         robot.rightSpinWheel.setPower(1);
         runtime.reset();
+
+        /*
         while (opModeIsActive() && runtime.seconds() < 1.8) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
+            //telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            //telemetry.update();
         }
+        */
     }
 
     }

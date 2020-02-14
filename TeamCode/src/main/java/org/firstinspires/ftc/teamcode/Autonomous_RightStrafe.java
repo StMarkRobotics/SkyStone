@@ -31,8 +31,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 /**
@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Right Strafe", group="Pushbot")
+@Autonomous(name="Red Triangle/Box", group="Pushbot")
 //@Disabled
 public class Autonomous_RightStrafe extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
@@ -86,15 +86,13 @@ public class Autonomous_RightStrafe extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //
-
         //Step 1: Strafe a little so that you aren't touching the wall.
-        robot.frontRight.setPower(-FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(FORWARD_SPEED);
+        robot.frontRight.setPower(FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.5) {
+        while (opModeIsActive() && runtime.seconds() < 1.2) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -105,40 +103,22 @@ public class Autonomous_RightStrafe extends LinearOpMode {
         robot.frontLeft.setPower(0);
         robot.backLeft.setPower(0);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds()<0.5)  {
+        while (opModeIsActive() && runtime.seconds()<0.2)  {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
-        //Step 3: Move arm down
-        robot.frontRight.setPower(0);
-        robot.backRight.setPower(0);
-        robot.frontLeft.setPower(0);
-        robot.backLeft.setPower(0);
+
+        //Step 3:  Drive forward for x seconds.
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds()<0.5)  {
+        while (opModeIsActive() && runtime.seconds() < 1.7) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-
-
-        //Step 4:  Drive forward for x seconds.
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.8) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-
-// robot.slide.setPower(____)
-        // + = Forward
-        // - = Backwards
-        // No Encoder runing
-
-
 
     }
 

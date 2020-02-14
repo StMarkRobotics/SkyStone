@@ -31,8 +31,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
 
 /**
@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Left Strafe", group="Pushbot")
+@Autonomous(name="Blue Triangle/Box", group="Pushbot")
 //@Disabled
 public class Autonomous_LeftStrafe extends LinearOpMode {
     OpticalDistanceSensor distanceSensor;  // Hardware Device Object
@@ -86,18 +86,31 @@ public class Autonomous_LeftStrafe extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        //
+
         //Step 1: Strafe a little so that you aren't touching the wall.
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(-FORWARD_SPEED);
-        robot.frontLeft.setPower(FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(FORWARD_SPEED);
+        robot.frontLeft.setPower(-FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.2) {
+        while (opModeIsActive() && runtime.seconds() < 1.5) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
 
-         /*Step 2: Take a break.
+         //Step 2: Take a break.
+        robot.frontRight.setPower(0);
+        robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.backLeft.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && runtime.seconds()<0.2)  {
+            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+/*
+        //Step 3: Move arm down
         robot.frontRight.setPower(0);
         robot.backRight.setPower(0);
         robot.frontLeft.setPower(0);
@@ -106,19 +119,28 @@ public class Autonomous_LeftStrafe extends LinearOpMode {
         while (opModeIsActive() && runtime.seconds()<0.5)  {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
-        }*/
+        }
+        */
 
 
-        //Step 3:  Drive forward for x seconds.
-        robot.frontRight.setPower(FORWARD_SPEED);
-        robot.backRight.setPower(FORWARD_SPEED);
-        robot.frontLeft.setPower(-FORWARD_SPEED);
-        robot.backLeft.setPower(-FORWARD_SPEED);
+
+        //Step 3:  Drive backwards for x seconds.
+        robot.frontRight.setPower(-FORWARD_SPEED);
+        robot.backRight.setPower(-FORWARD_SPEED);
+        robot.frontLeft.setPower(FORWARD_SPEED);
+        robot.backLeft.setPower(FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && runtime.seconds() < 1.8) {
+        while (opModeIsActive() && runtime.seconds() < 1.7) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+
+// robot.slide.setPower(____)
+        // + = Forward
+        // - = Backwards
+        // No Encoder runing
+
+
 
     }
 
